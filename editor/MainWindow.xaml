@@ -1,0 +1,105 @@
+<Window x:Class="PrimeFlux.Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PrimeFlux Level Editor" Height="800" Width="1400"
+        Background="{StaticResource BackgroundBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Menu Bar -->
+        <Menu Grid.Row="0" Background="{StaticResource SurfaceBrush}" 
+              Foreground="{StaticResource TextBrush}">
+            <MenuItem Header="File">
+                <MenuItem Header="New Scene" Click="NewScene_Click"/>
+                <MenuItem Header="Open Scene" Click="OpenScene_Click"/>
+                <MenuItem Header="Save Scene" Click="SaveScene_Click"/>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Preferences"/>
+            </MenuItem>
+            <MenuItem Header="Engine">
+                <MenuItem Header="Connect to Engine" Click="ConnectEngine_Click"/>
+                <MenuItem Header="Disconnect" Click="DisconnectEngine_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Hierarchy Panel -->
+            <Border Grid.Column="0" Background="{StaticResource SurfaceBrush}" 
+                    BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="0,0,1,0"
+                    Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Scene Hierarchy" FontSize="16" FontWeight="Bold" 
+                               Foreground="{StaticResource TextBrush}" Margin="0,0,0,10"/>
+                    <TreeView x:Name="HierarchyTree" Background="#1e293b" 
+                              Foreground="{StaticResource TextBrush}" Height="600">
+                        <TreeViewItem Header="Scene Root" IsExpanded="True">
+                            <TreeViewItem Header="Entity_001"/>
+                            <TreeViewItem Header="Entity_002"/>
+                        </TreeViewItem>
+                    </TreeView>
+                </StackPanel>
+            </Border>
+
+            <!-- Viewport -->
+            <Border Grid.Column="1" Background="#0a0e1a" Margin="10">
+                <Grid>
+                    <TextBlock Text="3D Viewport (Placeholder)" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Foreground="#64748b" FontSize="24"/>
+                </Grid>
+            </Border>
+
+            <!-- Inspector Panel -->
+            <Border Grid.Column="2" Background="{StaticResource SurfaceBrush}" 
+                    BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="1,0,0,0"
+                    Padding="10">
+                <StackPanel>
+                    <TextBlock Text="Inspector" FontSize="16" FontWeight="Bold" 
+                               Foreground="{StaticResource TextBrush}" Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Entity Properties" Foreground="{StaticResource TextBrush}" 
+                               Margin="0,10,0,5"/>
+                    <TextBox Background="#1e293b" Foreground="{StaticResource TextBrush}" 
+                             Text="Entity_001" Margin="0,0,0,10"/>
+                    
+                    <TextBlock Text="Components" Foreground="{StaticResource TextBrush}" 
+                               FontWeight="Bold" Margin="0,10,0,5"/>
+                    <ListBox Background="#1e293b" Foreground="{StaticResource TextBrush}" 
+                             Height="400">
+                        <ListBoxItem>Transform Component</ListBoxItem>
+                        <ListBoxItem>Mesh Renderer</ListBoxItem>
+                        <ListBoxItem>Script Component</ListBoxItem>
+                    </ListBox>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Console/Log Panel -->
+        <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" 
+                BorderBrush="{StaticResource PrimaryBrush}" BorderThickness="0,1,0,0"
+                Padding="10">
+            <StackPanel>
+                <TextBlock Text="Console" FontSize="14" FontWeight="Bold" 
+                           Foreground="{StaticResource TextBrush}" Margin="0,0,0,5"/>
+                <TextBox x:Name="ConsoleOutput" Background="#0a0e1a" 
+                         Foreground="#10b981" IsReadOnly="True" 
+                         VerticalScrollBarVisibility="Auto" Height="150"
+                         Text="[Editor] Ready&#x0a;[Editor] Waiting for engine connection..."/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
