@@ -201,5 +201,5 @@ MIT License - see LICENSE file for details.
 
 ---
 
-**Built with ⚡ by Tushar Singh Bisht**
+**Built with ⚡ by Tushar_Singh_Bisht**
 
